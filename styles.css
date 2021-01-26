@@ -9,20 +9,20 @@ body {
     display: flex;
     background-image: url(./img/backgroudn.jpg);
     background-color: black;
-    background-size: 100%;
+    background-size: 100% 100%; /* Современные браузеры */
 }
 
 .memory-game {
-    max-width: 640px;
-    max-height: 640px;
+    width: 50%;
+    height: 90%;
     margin: auto;
     display: flex;
     flex-wrap: wrap;
 }
 
 .card {
-    width: calc(25% - 10px);
-    height: calc(25% - 10px);
+    min-width: calc(25% - 10px);
+    min-height: calc(25% - 10px);
     margin: 5px;
     position: relative;
     box-shadow: 1px 1px 1px rgba(0,0,0,.3);
@@ -30,7 +30,6 @@ body {
 .back-img, .front-img {
     width: 100%;
     height: 100%;
-    padding: 20px;
     position: absolute;
     border-radius: 5px;
     background: #1C7CCC;
