@@ -2,6 +2,7 @@ const cards = document.querySelectorAll('.card');
 let hasFlippedCard = false;
 let firstCard, secondCard;
 let lockBoard = false;
+let cardCounter = 0;
 
 function  flipCard() {
   if (lockBoard) return;
@@ -26,7 +27,14 @@ function checkForMatch() {
 function disableCards() {
   firstCard.removeEventListener('click', flipCard);
   secondCard.removeEventListener('click', flipCard);
+  cardCounter += 1;
   resetBoard();
+  if (cardCounter === 8) {
+    setTimeout(() => {
+      restartGame();
+      alert('Win!');
+    }, 1500);
+  }
 }
 
 function unflipCards() {
@@ -35,7 +43,7 @@ function unflipCards() {
     firstCard.classList.remove('flip');
     secondCard.classList.remove('flip');
     resetBoard();
-  }, 1500);
+  }, 1000);
 }
 
 function resetBoard() {
@@ -50,6 +58,13 @@ function shuffle() {
   });
 };
 
+function restartGame() {
+  cards.forEach(card => {
+    card.classList.remove('flip');
+    card.addEventListener('click', flipCard);
+  });
+  shuffle();
+};
 
-cards.forEach(card => card.addEventListener('click', flipCard));
-shuffle();
+
+restartGame();
