@@ -3,12 +3,12 @@ let hasFlippedCard = false;
 let firstCard, secondCard;
 let lockBoard = false;
 let cardCounter = 0;
+const cardsPairsToWin = 8;
 
 function  flipCard() {
   if (lockBoard) return;
   if (this === firstCard) return;
   this.classList.add('flip');
-
   if (!hasFlippedCard) {
     hasFlippedCard = true;
     firstCard = this;
@@ -29,7 +29,7 @@ function disableCards() {
   secondCard.removeEventListener('click', flipCard);
   cardCounter += 1;
   resetBoard();
-  if (cardCounter === 8) {
+  if (cardCounter === cardsPairsToWin) {
     setTimeout(() => {
       restartGame();
       alert('Win!');
